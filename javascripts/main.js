@@ -1,6 +1,6 @@
 // show histories
 $(document).ready(function(){
-	listhistory();
+	listHistory();
 });
 
 $('#button_submit').click(function () {

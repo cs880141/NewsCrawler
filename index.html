@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>MyNewsCrawler</title>
 </head>
-<body>
+<body onload="checkCookie()">
 	
 	<!-- output -->
 	<p id="output">Get Yahoo news Title and Time</p>
@@ -18,6 +18,18 @@
 	<p class="info" id="title"></p>
 	<p class="info" id="time"></p>
 	
+	<table id="table_hist">
+		<tr>
+			<th>Histories</th>
+		</tr>
+	</table>
+	
+	<form>
+		  Cookie Name: <input name="cName" type="text" /> 
+		  Cookie Value: <input name="cValue" type="text" />
+		  <input onclick="doCookieSetup(this.form.cName.value, this.form.cValue.value)"
+		  type="button" value="設定" />
+	</form>
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	<script src="./javascripts/main.js"></script>

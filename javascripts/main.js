@@ -60,7 +60,7 @@ function getData(url) {
 			$('#time').text(time);
 			$('p.info').show();
 			
-			setCookie(, JSON.stringify({TITLE:title.substring(0, title.length-12),URL:url,TIME:time}),1);
+			setCookie(JSON.stringify({TITLE:title.substring(0, title.length-12),URL:url,TIME:time}),1);
 			insertHistory(title.substring(0, title.length-12),url,time);
 			
 		}catch(e){

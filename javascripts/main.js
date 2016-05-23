@@ -1,31 +1,7 @@
 // show histories
-
-var cookieArray = document.cookie.split(";");
-console.log(cookieArray.length);
-for (var i = 0; i < cookieArray.length; i++) {
-	if(cookieArray[i]!=[])
-	{
-		
-		var cElement = cookieArray[i].split("=");
-		if(cElement[0]!="username")
-		{
-			var cName = cElement[0];
-			var cValue = JSON.parse(cElement[1]);
-			insertHistory(cName, cValue.URL, cValue.TIME);	
-			
-		}
-	}
-}
+listHistory();
 
 
-
-
-function setCookie(cname,cvalue,exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires=" + d.toGMTString();
-    document.cookie = cname+"="+cvalue+"; "+expires;
-}
 /*
 function getCookie(cname) {
     var name = cname + "=";
@@ -66,7 +42,7 @@ $('#button_submit').click(function () {
 })
 
 // use YQL to get news title and time
-var getData = function(url) {
+function getData(url) {
 	var BasicQueryUrl = 'http://query.yahooapis.com/v1/public/yql?'
 	var query = 'q=' +
 		encodeURIComponent('select * from html where ' 
@@ -99,7 +75,14 @@ var getData = function(url) {
 
 }
 
-var insertHistory = function(title, url, time) {
+function setCookie(cname,cvalue,exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname+"="+cvalue+"; "+expires;
+}
+
+function insertHistory(title, url, time) {
 	var row = document.getElementById("table_hist").insertRow(1);
 	// Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
 	var cell1 = row.insertCell(0);
@@ -110,7 +93,24 @@ var insertHistory = function(title, url, time) {
 	cell2.innerHTML = time;
 }
 
+function listHistory() {
+	var cookieArray = document.cookie.split(";");
 
+	for (var i = 0; i < cookieArray.length; i++) {
+		if(cookieArray[i]!=[])
+		{
+			
+			var cElement = cookieArray[i].split("=");
+			if(cElement[0]!="username")
+			{
+				var cName = cElement[0];
+				var cValue = JSON.parse(cElement[1]);
+				insertHistory(cName, cValue.URL, cValue.TIME);	
+				
+			}
+		}
+	}
+}
 
 
 

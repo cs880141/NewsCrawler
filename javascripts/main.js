@@ -1,5 +1,23 @@
 // show histories
-listCookies();
+
+var cookieArray = document.cookie.split(";");
+console.log(cookieArray.length);
+for (var i = 0; i < cookieArray.length; i++) {
+	if(cookieArray[i]!=[])
+	{
+		
+		var cElement = cookieArray[i].split("=");
+		if(cElement[0]!="username")
+		{
+			var cName = cElement[0];
+			var cValue = JSON.parse(cElement[1]);
+			insertHistory(cName, cValue.URL, cValue.TIME);	
+			
+		}
+	}
+}
+
+
 
 
 function setCookie(cname,cvalue,exdays) {
@@ -92,26 +110,7 @@ var insertHistory = function(title, url, time) {
 	cell2.innerHTML = time;
 }
 
-/*
-function doCookieSetup(name, value) {
-	var expires = new Date();
-	//有效時間保存 2 天 2*24*60*60*1000
-	expires.setTime(expires.getTime() + 172800000);
-	document.cookie = name + "=" + escape(value) + ";expires=" + expires.toGMTString();
-	alert(document.cookie);
-	listCookie();
-}
-*/
-function listCookies() {
-	
-	cookieArray = document.cookie.split(";");
-	for (var i = 0; i < cookieArray.length; i++) {
-		console.log(cookieArray[i]);
-		cElement = cookieArray[i].split("=");
-		cName = cElement[0];
-		cValue = cElement[1];
-		insertHistory(cName, JSON.parse(cValue).URL, JSON.parse(cValue).TIME);
-	}
-}
+
+
 
 

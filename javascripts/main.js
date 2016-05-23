@@ -1,6 +1,6 @@
 // show histories
-//doCookieSetup("test1",1);
-//doCookieSetup("test2","def");
+listCookies();
+
 
 function setCookie(cname,cvalue,exdays) {
     var d = new Date();
@@ -8,7 +8,7 @@ function setCookie(cname,cvalue,exdays) {
     var expires = "expires=" + d.toGMTString();
     document.cookie = cname+"="+cvalue+"; "+expires;
 }
-
+/*
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
@@ -35,12 +35,13 @@ function checkCookie() {
        }
     }
 }
+*/
 
 
 $('#button_submit').click(function () {
 	
 	var url = $('#input_URL').val();
-	console.log("click!"+url);
+	console.log("click!");
 	
 	getData(url);
 	
@@ -63,6 +64,16 @@ var getData = function(url) {
 			$('#title').text(title.substring(0, title.length-12));
 			$('#time').text(time);
 			$('p.info').show();
+			
+			setCookie(title.substring(0, title.length-12), JSON.stringify({URL:url,TIME:time}),1);
+			insertHistory(title.substring(0, title.length-12),url,time);
+			/*
+			var a = JSON.stringify({URL:url,TIME:time});
+			console.log("a = "+a);
+			var b = JSON.parse(a);
+			console.log(b.TIME);
+			*/
+			
 		}catch(e){
 			console.log(e);
 		}
@@ -70,7 +81,18 @@ var getData = function(url) {
 
 }
 
+var insertHistory = function(title, url, time) {
+	var row = document.getElementById("table_hist").insertRow(1);
+	// Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+	var cell1 = row.insertCell(0);
+	var cell2 = row.insertCell(1);
 
+	// Add some text to the new cells:
+	cell1.innerHTML = "<a href="+url+" target=\"_blank\">"+title+"</a>";
+	cell2.innerHTML = time;
+}
+
+/*
 function doCookieSetup(name, value) {
 	var expires = new Date();
 	//有效時間保存 2 天 2*24*60*60*1000
@@ -79,18 +101,17 @@ function doCookieSetup(name, value) {
 	alert(document.cookie);
 	listCookie();
 }
-
-function listCookie() {
-	document.writeln("<table>");
-	document.writeln("<tr><th>Name<th>Value");
+*/
+function listCookies() {
+	
 	cookieArray = document.cookie.split(";");
 	for (var i = 0; i < cookieArray.length; i++) {
 		console.log(cookieArray[i]);
-		thisCookie = cookieArray[i].split("=");
-		cName = unescape(thisCookie[0]);
-		cValue = unescape(thisCookie[1]);
-		document.writeln("<tr><td>" + cName + "</td><td>" + cValue + "</td>");
+		cElement = cookieArray[i].split("=");
+		cName = cElement[0];
+		cValue = cElement[1];
+		insertHistory(cName, JSON.parse(cValue).URL, JSON.parse(cValue).TIME);
 	}
-	document.writeln("</table>");
 }
+
 

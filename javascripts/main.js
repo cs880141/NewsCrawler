@@ -1,4 +1,5 @@
 // show histories
+clearCookies();
 listHistory();
 
 
@@ -110,6 +111,24 @@ function listHistory() {
 			}
 		}
 	}
+}
+
+function clearCookies() {
+	var cookieArray = document.cookie.split(";");
+
+	for (var i = 0; i < cookieArray.length; i++) {
+		if(cookieArray[i]!=[])
+		{
+			var cElement = cookieArray[i].split("=");
+			
+			var cName = cElement[0];
+			var cValue = JSON.parse(cElement[1]);
+			setCookie(cName,"",-1);
+				
+		}
+	}
+	
+	
 }
 
 

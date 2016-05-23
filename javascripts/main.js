@@ -70,7 +70,7 @@ var getData = function(url) {
 
 }
 
-/*
+
 function doCookieSetup(name, value) {
 	var expires = new Date();
 	//有效時間保存 2 天 2*24*60*60*1000
@@ -93,4 +93,4 @@ function listCookie() {
 	}
 	document.writeln("</table>");
 }
-*/
+

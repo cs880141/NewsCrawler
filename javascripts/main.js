@@ -1,6 +1,6 @@
 // show histories
-//clearCookies();
-listHistory();
+clearCookies();
+//listHistory();
 
 
 /*
@@ -75,6 +75,7 @@ function setCookie(cname,cvalue,exdays) {
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires=" + d.toGMTString();
     document.cookie = cname+"="+cvalue+"; "+expires;
+	alert(document.cookie);
 }
 
 function insertHistory(title, url, time) {
@@ -121,7 +122,7 @@ function clearCookies() {
 			var cName = cElement[0];
 			var cValue = JSON.parse(cElement[1]);
 			setCookie(cName,"",-1);
-				
+			alert(cookie);	
 		}
 	}
 	

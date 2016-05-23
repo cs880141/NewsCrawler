@@ -75,7 +75,7 @@ function doCookieSetup(name, value) {
 	var expires = new Date();
 	//有效時間保存 2 天 2*24*60*60*1000
 	expires.setTime(expires.getTime() + 172800000);
-	document.cookie = name + "=" + escape(value) + ";domain=NULL;expires=" + expires.toGMTString();
+	document.cookie = name + "=" + escape(value) + ";expires=" + expires.toGMTString();
 	alert(document.cookie);
 	listCookie();
 }

@@ -1,5 +1,5 @@
 // show histories
-clearCookies();
+//clearCookies();
 listHistory();
 
 
@@ -62,12 +62,6 @@ function getData(url) {
 			
 			setCookie(title.substring(0, title.length-12), JSON.stringify({URL:url,TIME:time}),1);
 			insertHistory(title.substring(0, title.length-12),url,time);
-			/*
-			var a = JSON.stringify({URL:url,TIME:time});
-			console.log("a = "+a);
-			var b = JSON.parse(a);
-			console.log(b.TIME);
-			*/
 			
 		}catch(e){
 			console.log(e);
@@ -99,7 +93,7 @@ function listHistory() {
 	var cookieArray = document.cookie.split(";");
 
 	for (var i = 0; i < cookieArray.length; i++) {
-		if(cookieArray[i]!=[])
+		if(cookieArray[i]!="")
 		{
 			
 			var cElement = cookieArray[i].split("=");

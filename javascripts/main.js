@@ -96,14 +96,14 @@ function listHistory() {
 	for (var i = 0; i < cookieArray.length; i++) {
 		if(cookieArray[i]!="")
 		{
-			
-			var cElement = cookieArray[i].split("=");
-			if(cElement[0]!="username")
-			{
+			try {
+				var cElement = cookieArray[i].split("=");
+				
 				var cName = cElement[0];
 				var cValue = JSON.parse(cElement[1]);
 				insertHistory(cName, cValue.URL, cValue.TIME);	
-				
+			}catch(e) {
+				console.log(e);
 			}
 		}
 	}
@@ -117,12 +117,16 @@ function clearCookies() {
 	for (var i = 0; i < cookieArray.length; i++) {
 		if(cookieArray[i]!=[])
 		{
-			var cElement = cookieArray[i].split("=");
-			
-			var cName = cElement[0];
-			var cValue = JSON.parse(cElement[1]);
-			setCookie(cName,"",-1);
-			alert(cookie);	
+			try{
+				var cElement = cookieArray[i].split("=");
+				
+				var cName = cElement[0];
+				var cValue = JSON.parse(cElement[1]);
+				setCookie(cName,"",-1);
+				alert(cookie);	
+			}catch(e){
+				console.log(e);
+			}
 		}
 	}
 	

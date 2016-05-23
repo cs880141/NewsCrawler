@@ -1,37 +1,7 @@
 // show histories
-//clearCookies();
-listHistory();
-
-
-/*
-function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0; i<ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-
-function checkCookie() {
-    var user=getCookie("username");
-    if (user != "") {
-        alert("Welcome again " + user);
-    } else {
-       user = prompt("Please enter your name:","");
-       if (user != "" && user != null) {
-           setCookie("username", user, 30);
-       }
-    }
-}
-*/
-
+$(document).ready(function(){
+	listhistory();
+});
 
 $('#button_submit').click(function () {
 	
@@ -78,7 +48,7 @@ function setCookie(cvalue,exdays) {
 	timestamp.setTime(timestamp.getTime());
 	var expires = "expires=" + d.toGMTString();
     document.cookie = timestamp+"="+cvalue+"; "+expires;
-	alert(document.cookie);
+	//alert(document.cookie);
 }
 
 function deleteCookie(cname,cvalue) {
@@ -87,7 +57,7 @@ function deleteCookie(cname,cvalue) {
   
 	var expires = "expires=" + d.toGMTString();
     document.cookie = cname+"="+cvalue+"; "+expires;
-	alert(document.cookie);
+	//alert(document.cookie);
 }
 
 function insertHistory(title, url, time) {
@@ -108,10 +78,8 @@ function listHistory() {
 	for (var i = 0; i < cookieArray.length; i++) {
 		if(cookieArray[i]!="")
 		{
-			console.log(i);
 			try {
 				var cElement = cookieArray[i].split("=");
-				
 				var cValue = JSON.parse(cElement[1]);
 				insertHistory(cValue.TITLE, cValue.URL, cValue.TIME);	
 			}catch(e) {
@@ -128,18 +96,15 @@ function clearCookies() {
 	for (var i = 0; i < cookieArray.length; i++) {
 		if(cookieArray[i]!=[])
 		{
-			console.log(i);
 			try{
 				var cElement = cookieArray[i].split("=");
 				deleteCookie(cElement[0],cElement[1]);
-				//alert(document.cokie);
 			}catch(e){
 				console.log(e);
 			}
 		}
 	}
 	console.log("cookie cleared");
-	
 }
 
 

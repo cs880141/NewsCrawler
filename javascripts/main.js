@@ -111,25 +111,22 @@ function listHistory() {
 
 function clearCookies() {
 	
-	console.log("cookie cleared");
 	var cookieArray = document.cookie.split(";");
 
 	for (var i = 0; i < cookieArray.length; i++) {
 		if(cookieArray[i]!=[])
 		{
+			console.log(i);
 			try{
 				var cElement = cookieArray[i].split("=");
-				
-				var cName = cElement[0];
-				var cValue = JSON.parse(cElement[1]);
-				setCookie(cName,"",-1);
-				alert(cookie);	
+				setCookie(cElement[0],cElement[1],-1);
+				alert(document.cokie);
 			}catch(e){
 				console.log(e);
 			}
 		}
 	}
-	
+	console.log("cookie cleared");
 	
 }
 

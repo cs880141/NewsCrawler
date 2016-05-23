@@ -81,6 +81,15 @@ function setCookie(cvalue,exdays) {
 	alert(document.cookie);
 }
 
+function deleteCookie(cname,cvalue) {
+    var d = new Date();
+    d.setTime(d.getTime() - 1);
+  
+	var expires = "expires=" + d.toGMTString();
+    document.cookie = cname+"="+cvalue+"; "+expires;
+	alert(document.cookie);
+}
+
 function insertHistory(title, url, time) {
 	var row = document.getElementById("table_hist").insertRow(1);
 	// Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
@@ -122,7 +131,7 @@ function clearCookies() {
 			console.log(i);
 			try{
 				var cElement = cookieArray[i].split("=");
-				setCookie(cElement[0],cElement[1],-1);
+				deleteCookie(cElement[0],cElement[1]);
 				//alert(document.cokie);
 			}catch(e){
 				console.log(e);

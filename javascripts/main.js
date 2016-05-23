@@ -1,6 +1,6 @@
 // show histories
-clearCookies();
-//listHistory();
+//clearCookies();
+listHistory();
 
 
 /*
@@ -96,6 +96,7 @@ function listHistory() {
 	for (var i = 0; i < cookieArray.length; i++) {
 		if(cookieArray[i]!="")
 		{
+			console.log(i);
 			try {
 				var cElement = cookieArray[i].split("=");
 				

@@ -95,6 +95,7 @@ function insertHistory(title, url, time) {
 }
 
 function listHistory() {
+	console.log("list histories");
 	var cookieArray = document.cookie.split(";");
 
 	for (var i = 0; i < cookieArray.length; i++) {
@@ -114,6 +115,8 @@ function listHistory() {
 }
 
 function clearCookies() {
+	
+	console.log("cookie cleared");
 	var cookieArray = document.cookie.split(";");
 
 	for (var i = 0; i < cookieArray.length; i++) {

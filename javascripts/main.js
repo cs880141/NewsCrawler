@@ -60,7 +60,7 @@ function getData(url) {
 			$('#time').text(time);
 			$('p.info').show();
 			
-			setCookie(title.substring(0, title.length-12), JSON.stringify({URL:url,TIME:time}),1);
+			setCookie(, JSON.stringify({TITLE:title.substring(0, title.length-12),URL:url,TIME:time}),1);
 			insertHistory(title.substring(0, title.length-12),url,time);
 			
 		}catch(e){
@@ -70,11 +70,14 @@ function getData(url) {
 
 }
 
-function setCookie(cname,cvalue,exdays) {
+function setCookie(cvalue,exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires=" + d.toGMTString();
-    document.cookie = cname+"="+cvalue+"; "+expires;
+    
+	var timestamp = new Date();
+	timestamp.setTime(timestamp.getTime());
+	var expires = "expires=" + d.toGMTString();
+    document.cookie = timestamp+"="+cvalue+"; "+expires;
 	alert(document.cookie);
 }
 
@@ -100,9 +103,8 @@ function listHistory() {
 			try {
 				var cElement = cookieArray[i].split("=");
 				
-				var cName = cElement[0];
 				var cValue = JSON.parse(cElement[1]);
-				insertHistory(cName, cValue.URL, cValue.TIME);	
+				insertHistory(cValue.TITLE, cValue.URL, cValue.TIME);	
 			}catch(e) {
 				console.log(e);
 			}
@@ -121,7 +123,7 @@ function clearCookies() {
 			try{
 				var cElement = cookieArray[i].split("=");
 				setCookie(cElement[0],cElement[1],-1);
-				alert(document.cokie);
+				//alert(document.cokie);
 			}catch(e){
 				console.log(e);
 			}

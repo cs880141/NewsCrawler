@@ -18,20 +18,19 @@ function getData(url) {
 	var query = 'q=' +
 		encodeURIComponent('select * from html where ' 
 		+ 'url = "' +url +'" and ' +  'xpath=' + "'" 
-		+ '//title|//abbr' + "'") + '&format=json';
+		+ '//div[@class="bd"]/cite/abbr|//div[@class="bd"]/h1[@class="headline"]' + "'") + '&format=json';
 	
-	$('p.info').hide();	
+	$('p.info').hide();
 	$.get(BasicQueryUrl + query, function (data) {
 		try{
-			var title = data.query.results.title;
+			var title = data.query.results.h1.content;
 			var time = data.query.results.abbr.content;
-			
-			$('#title').text(title.substring(0, title.length-12));
+			$('#title').text(title);
 			$('#time').text(time);
 			$('p.info').show();
 			
-			setCookie(JSON.stringify({TITLE:title.substring(0, title.length-12),URL:url,TIME:time}),1);
-			insertHistory(title.substring(0, title.length-12),url,time);
+			setCookie(JSON.stringify({TITLE:title,URL:url,TIME:time}),1);
+			insertHistory(title,url,time);
 			
 		}catch(e){
 			console.log(e);

@@ -26,7 +26,7 @@ function getData(url) {
 			var title = data.query.results.h1.content;
 			var time = data.query.results.abbr.content;
 			$('#title').text("Title:"+title);
-			$('#time').text("Time :"+time);
+			$('#time').text("Time:"+time);
 			$('p.info').show();
 			
 			setCookie(JSON.stringify({TITLE:title,URL:url,TIME:time}),1);

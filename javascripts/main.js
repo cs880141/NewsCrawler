@@ -25,8 +25,8 @@ function getData(url) {
 		try{
 			var title = data.query.results.h1.content;
 			var time = data.query.results.abbr.content;
-			$('#title').text(title);
-			$('#time').text(time);
+			$('#title').text("Title:"+title);
+			$('#time').text("Time :"+time);
 			$('p.info').show();
 			
 			setCookie(JSON.stringify({TITLE:title,URL:url,TIME:time}),1);
@@ -103,8 +103,7 @@ function clearCookies() {
 			}
 		}
 	}
+	$("#table_hist tr").remove(); 
 	console.log("cookie cleared");
 }
-
-
 
